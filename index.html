@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deadline Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .fade-effect {
+            animation: fadeIn 0.2s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-r from-teal-300 to-indigo-400 min-h-screen text-white py-8">
+    <div class="container mx-auto max-w-2xl rounded-xl shadow-lg overflow-hidden bg-white bg-opacity-15 backdrop-filter backdrop-blur-md">
+        <div class="px-8 py-6">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-2xl font-bold text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 inline-block mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    Task & Deadline Hub
+                </h1>
+                <button id="toggleView" class="text-lg bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-3 px-4 rounded-md">View Calendar</button>
+            </div>
+
+            <div id="remindersSection" class="reminders-section space-y-4">
+                <div class="bg-white bg-opacity-80 rounded-md shadow-inner p-5 text-gray-800 fade-effect">
+                    <input id="taskTitle" type="text"
+                           class="w-full p-3 mb-3 border-2 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                           placeholder="Enter task title">
+
+                    <div class="flex gap-3 mb-3">
+                        <input id="dueDate" type="text"
+                               class="w-1/2 p-3 border-2 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                               placeholder="Select due date">
+                        <input id="dueTime" type="text"
+                               class="w-1/2 p-3 border-2 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                               placeholder="Set due time">
+                    </div>
+
+                    <textarea id="taskDescription"
+                              class="w-full p-3 mb-3 border-2 rounded-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+                              placeholder="Add description (optional)"></textarea>
+
+                    <div class="mb-4 flex items-center">
+                        <input id="enableReminders" type="checkbox" class="mr-2 h-5 w-5">
+                        <label class="text-lg text-gray-700">Enable daily 7 AM reminders</label>
+                    </div>
+
+                    <button type="button" onclick="addDeadline()"
+                            class="text-lg bg-teal-500 hover:bg-teal-600 text-white py-3 rounded-lg w-full font-bold transition-colors">
+                        Add Deadline
+                    </button>
+                </div>
+
+                <div id="deadlineList" class="space-y-3"></div>
+            </div>
+
+            <div id="calendarSection" class="calendar-section hidden bg-white bg-opacity-80 rounded-md shadow-inner p-4 text-gray-800 fade-effect">
+                <div class="calendar-header flex justify-between items-center mb-4">
+                    <button id="prevMonthCalendar" class="text-2xl font-bold text-gray-600 hover:text-gray-800">&lt;</button>
+                    <span id="currentMonthYear" class="text-xl font-semibold text-gray-700"></span>
+                    <button id="nextMonthCalendar" class="text-2xl font-bold text-gray-600 hover:text-gray-800">&gt;</button>
+                </div>
+                <div id="calendarGrid" class="calendar-grid grid grid-cols-7 gap-2"></div>
+                <div id="dayDeadlines" class="mt-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="script.js"></script>
+</body>
+</html>

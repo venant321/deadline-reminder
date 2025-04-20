@@ -1,0 +1,174 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f0f0f0; /* Fallback color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    background-image:
+        repeating-linear-gradient(90deg, transparent, transparent 50px, #e0f7fa 50px, #e0f7fa 100px), /* Subtle vertical stripes */
+        repeating-linear-gradient(0deg, transparent, transparent 50px, #e0f7fa 50px, #e0f7fa 100px);
+    background-size: auto, auto;
+    background-position: center center, center center;
+}
+
+body::before,
+body::after {
+    content: '📅'; /* Calendar emoji */
+    font-size: 8em; /* Increased emoji size */
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.3; /* Adjust opacity for subtlety */
+    pointer-events: none; /* Prevent interaction with the emojis */
+}
+
+body::before {
+    left: 50px; /* Increased left position */
+}
+
+body::after {
+    right: 50px; /* Increased right position */
+}
+
+.fade-effect {
+    animation: fadeIn 0.2s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.container {
+    max-width: 800px; /* Adjust as needed */
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    margin: 20px;
+    z-index: 1; /* Ensure container is above the emojis */
+}
+
+/* Rest of your CSS for calendar, reminders, etc. remains the same */
+.calendar-section {
+    display: none;
+    border: 1px solid #94a3b8;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    background: white;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.calendar-navigation {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 1.2em;
+    color: #4a5568;
+    transition: color 0.2s ease;
+}
+
+.calendar-navigation:hover {
+    color: #2d3748;
+}
+
+.calendar-title {
+    font-weight: 600;
+    font-size: 1.25em;
+    color: #2d3748;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    background: white;
+}
+
+.calendar-header-cell {
+    background: #f8fafc;
+    border-bottom: 2px solid #94a3b8;
+    padding: 0.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #4a5568;
+}
+
+.calendar-day {
+    min-height: 80px;
+    padding: 0.75rem;
+    position: relative;
+    border: 1px solid #e2e8f0;
+    background: white;
+    text-align: center;
+}
+
+.calendar-day.today {
+    background-color: #bfdbfe !important;
+    color: #1e40af !important;
+    border: 2px solid #3b82f6 !important;
+    font-weight: bold !important;
+}
+
+.calendar-day.has-deadline {
+    background-color: #fed7aa !important;
+    color: #c2410c !important;
+    border: 2px solid #f59e0b !important;
+    font-weight: bold !important;
+}
+
+.reminders-section {
+    display: block;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#dayDeadlines {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+#dayDeadlines h4 {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #2d3748;
+}
+
+#dayDeadlines ul {
+    list-style: disc;
+    margin-left: 1.5rem;
+    color: #4a5568;
+}
+
+#dayDeadlines ul li {
+    margin-bottom: 0.25rem;
+}
+
+#deadlineList .bg-white {
+    padding: 15px;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+}
+
+#deadlineList h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+}
